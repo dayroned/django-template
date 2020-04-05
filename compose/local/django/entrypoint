@@ -12,6 +12,9 @@ done
 
 echo "PostgreSQL started"
 
+cp sample-secrets.json local-secrets.json
+sed -i "s/sample-secrets.json/local-secrets.json/g" local-secrets.json
+
 python manage.py makemigrations
 python manage.py migrate
 python manage.py loaddata config/fixtures/*.json
