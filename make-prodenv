@@ -1,0 +1,91 @@
+#!/bin/bash
+
+echo
+echo "************************************************"
+echo "This script sets up a new production enviroment!"
+echo "************************************************"
+echo
+
+read -p "Are you sure you want to continue? (yes/no) "
+if [ "$REPLY" != "yes" ]; then
+  exit 0
+fi
+echo
+
+read -p "Are you sure? (type production to continue) "
+if [ "$REPLY" != "production" ]; then
+  exit 0
+fi
+echo
+
+echo "Checking Secrets ..."
+if [ ! -f secrets.json ]; then
+  echo "[ERROR] Missing secrets.json! Aborting ..."
+  echo
+  exit 1
+fi
+echo "Done"
+
+echo "Creating virtual enviroment (venv) ..."
+virtualenv --python=python3 venv
+if [ ! $? -eq 0 ]; then
+  exit 1
+fi
+echo "Done"
+
+echo "Activating virtual enviroment (venv) ..."
+source venv/bin/activate
+if [ "$VIRTUAL_ENV" == "" ]; then
+  exit 1
+fi
+echo "Done"
+
+echo "Upgrading pip ..."
+pip install --upgrade pip
+if [ ! $? -eq 0 ]; then
+  exit 1
+fi
+echo "Done"
+
+echo "Installing prerequisites ..."
+pip install -r requirements.txt
+if [ ! $? -eq 0 ]; then
+  exit 1
+fi
+echo "Done"
+
+echo "Applying migrations ..."
+mkdir -p data
+python manage.py migrate --settings=config.settings.prod
+if [ ! $? -eq 0 ]; then
+  exit 1
+fi
+echo "Done"
+
+echo "Collecting static files ..."
+mkdir -p static
+python manage.py collectstatic --clear --noinput --settings=config.settings.prod
+if [ ! $? -eq 0 ]; then
+  exit 1
+fi
+python manage.py collectstatic --noinput --settings=config.settings.prod
+if [ ! $? -eq 0 ]; then
+  exit 1
+fi
+echo "Done"
+
+echo "Setting permissions ..."
+sudo chgrp apache -R data/
+sudo chmod 775 data
+sudo chmod 664 data/*
+echo "Done"
+
+echo "Touching WSGI for server reload ..."
+touch config/wsgi.py
+echo "Done"
+
+echo
+echo "Environment Ready!"
+echo
+
+# 2020.04.01-DEA

@@ -1,0 +1,71 @@
+#!/bin/bash
+
+echo
+echo "*************************************************"
+echo "This script sets up a new development enviroment!"
+echo "*************************************************"
+echo
+
+read -p "Are you sure you want to continue? (yes/no) "
+if [ "$REPLY" != "yes" ]; then
+  exit 0
+fi
+echo
+
+echo "Checking Secrets ..."
+if [ ! -f local-secrets.json ]; then
+  echo "[ERROR] Missing local-secrets.json! Stopping ..."
+  echo
+  exit 1
+fi
+echo "Done"
+
+echo "Creating virtual enviroment (venv) ..."
+virtualenv --python=python3 ~/venv
+if [ ! $? -eq 0 ]; then
+  exit 1
+fi
+echo "Done"
+
+echo "Activating virtual enviroment (venv) ..."
+source ~/venv/bin/activate
+if [ "$VIRTUAL_ENV" == "" ]; then
+  exit 1
+fi
+echo "Done"
+
+echo "Upgrading pip ..."
+pip install --upgrade pip
+if [ ! $? -eq 0 ]; then
+  exit 1
+fi
+echo "Done"
+
+echo "Installing prerequisites ..."
+pip install -r requirements.txt
+if [ ! $? -eq 0 ]; then
+  exit 1
+fi
+echo "Done"
+
+echo "Importing data ..."
+mkdir -p data
+python manage.py makemigrations
+if [ ! $? -eq 0 ]; then
+  exit 1
+fi
+python manage.py migrate
+if [ ! $? -eq 0 ]; then
+  exit 1
+fi
+python manage.py loaddata config/fixtures/*.json
+if [ ! $? -eq 0 ]; then
+  exit 1
+fi
+echo "Done"
+
+echo
+echo "Environment Ready!"
+echo
+
+# 2020.04.01-DEA

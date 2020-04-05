@@ -1,0 +1,35 @@
+#!/bin/bash
+
+echo
+echo "**************************************************"
+echo "This script deletes all the data from the project!"
+echo "**************************************************"
+echo
+
+read -p "Are you sure you want to continue? (yes/no) "
+if [ "$REPLY" != "yes" ]; then
+  exit 0
+fi
+echo
+
+echo "Checking Secrets ..."
+if [ -f secrets.json ]; then
+  echo "[ERROR] This looks like a production environment! Stopping ..."
+  echo
+  exit 1
+fi
+echo "Done"
+
+echo "Deleting virtual environment (venv) ..."
+rm -rf ~/venv
+echo "Done"
+
+echo "Deleting database folder (data) ..."
+rm -rf data/
+echo "Done"
+
+echo
+echo "Environment Clean!"
+echo
+
+# 2020.04.01-DEA

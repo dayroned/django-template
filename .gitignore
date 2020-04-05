@@ -1,0 +1,16 @@
+# Git Ignores
+
+# Django Files and Data
+/secrets.json
+/local-secrets.json
+/static
+/media
+
+# OS Related
+.DS_Store
+
+# Python Related
+__pycache__/
+*.py[cod]
+
+# 2020.04.01-DEA

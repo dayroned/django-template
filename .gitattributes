@@ -1,0 +1,22 @@
+# Default all files it determines as text and normalize them
+* text=auto eol=lf
+
+# Binary files
+*.7z      binary
+*.chm     binary
+*.eot     binary
+*.gif     binary
+*.gz      binary
+*.ico     binary
+*.jpeg    binary
+*.jpg     binary
+*.mov     binary
+*.nupkg   binary
+*.otf     binary
+*.pdf     binary
+*.png     binary
+*.ttf     binary
+*.woff    binary
+*.zip     binary
+
+# 2020.04.01-DEA
