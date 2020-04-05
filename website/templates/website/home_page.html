@@ -1,0 +1,13 @@
+{% extends 'website/base.html' %}
+
+{% block title %}{{ block.super }} | Home Page{% endblock title %}
+
+{% block contents %}
+
+<h1 class="h3 mb-3 font-weight-normal">Home Page</h1>
+
+{% if user.is_authenticated %}<p class="text-muted">User authenticated as: {{ user.username }}.</p>{% endif %}
+
+<a class="btn btn-primary" href="{% url 'website:dashboard' %}" role="button">Dashboard</a>
+
+{% endblock contents %}

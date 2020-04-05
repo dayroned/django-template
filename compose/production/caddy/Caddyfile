@@ -1,0 +1,6 @@
+:443 {
+    tls internal {
+        on_demand
+    }
+    reverse_proxy django:5000
+}

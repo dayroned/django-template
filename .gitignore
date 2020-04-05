@@ -1,0 +1,15 @@
+# Development
+/.vscode
+/.env
+/data
+
+# OS
+.DS_Store
+
+# Python Related
+__pycache__
+
+# Django
+/db.sqlite3
+/static
+/media
