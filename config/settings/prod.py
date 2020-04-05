@@ -39,8 +39,12 @@ INSTALLED_APPS += [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'data', 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_project_db',
+        'USER': get_secret('POSTGRES_USER'),
+        'PASSWORD': get_secret('POSTGRES_PASSWORD'),
+        'HOST': 'postgres.example.com',
+        'PORT': '5432',
     }
 }
 

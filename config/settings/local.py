@@ -39,8 +39,12 @@ INSTALLED_APPS += [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'data', 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': get_secret('POSTGRES_USER'),
+        'PASSWORD': get_secret('POSTGRES_PASSWORD'),
+        'HOST': 'postgres',
+        'PORT': '5432',
     }
 }
 
@@ -50,7 +54,9 @@ STATIC_URL = '/static/'
 
 # Email Backend
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Login Settings
 
