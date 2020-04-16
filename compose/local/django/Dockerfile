@@ -28,3 +28,5 @@ RUN chmod +x /start
 WORKDIR /app
 
 ENTRYPOINT ["/entrypoint"]
+
+# 2020.04.01-DEA
