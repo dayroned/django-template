@@ -37,6 +37,13 @@ INSTALLED_APPS += [
 
 # Databases
 
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'data', 'db.sqlite3'),
+#    }
+# } # [for SQLite3]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

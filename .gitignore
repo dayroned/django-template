@@ -5,6 +5,7 @@
 /local-secrets.json
 /static
 /media
+/data
 
 # OS Related
 .DS_Store
@@ -12,5 +13,12 @@
 # Python Related
 __pycache__/
 *.py[cod]
+
+# Vagrant Settings [legacy]
+.vagrant
+*.log
+
+# Virtual Environment [legacy]
+/venv
 
 # 2020.04.01-DEA
