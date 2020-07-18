@@ -76,6 +76,12 @@ EMAIL_USE_TLS = True
 LOGIN_URL = 'core:login'
 LOGOUT_REDIRECT_URL = 'website:home_page'
 
+# Security
+
+CSRF_COOKIE_SECURE = True
+
+SESSION_COOKIE_SECURE = True
+
 # Google ReCaptcha
 
 RECAPTCHA_SECRET_KEY = get_secret('RECAPTCHA_SECRET_KEY')
