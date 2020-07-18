@@ -78,6 +78,8 @@ LOGOUT_REDIRECT_URL = 'website:home_page'
 
 # Security
 
+SECURE_SSL_REDIRECT = True
+
 CSRF_COOKIE_SECURE = True
 
 SESSION_COOKIE_SECURE = True
