@@ -75,7 +75,7 @@ fi
 echo "Done"
 
 echo "Setting permissions ..."
-sudo chgrp apache -R data/
+sudo chgrp www-data -R data/
 sudo chmod 775 data
 sudo chmod 664 data/*
 echo "Done"
@@ -88,4 +88,4 @@ echo
 echo "Environment Ready!"
 echo
 
-# 2020.04.01-DEA
+# 2020.07.18-DEA

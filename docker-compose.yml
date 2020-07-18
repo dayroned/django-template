@@ -15,12 +15,14 @@ services:
     command: /start
 
   postgres:
-    image: postgres:latest
+    image: postgres:12.3
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=qwerty123
 
   mailhog:
-    image: mailhog/mailhog:latest
+    image: mailhog/mailhog:v1.0.0
     ports:
       - "8025:8025"
+
+# 2020.07.18-DEA

@@ -12,4 +12,4 @@ urlpatterns = [
     path('', include('website.urls'))
 ]
 
-# 2020.04.01-DEA
+# 2020.07.18-DEA

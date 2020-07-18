@@ -8,4 +8,4 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver 0.0.0.0:8000
 
-# 2020.04.01-DEA
+# 2020.07.18-DEA

@@ -14,11 +14,10 @@
 __pycache__/
 *.py[cod]
 
-# Vagrant Settings [legacy]
-.vagrant
-*.log
-
-# Virtual Environment [legacy]
+# Virtual Environment
 /venv
 
-# 2020.04.01-DEA
+# Development
+/.vscode
+
+# 2020.07.18-DEA

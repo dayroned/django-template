@@ -19,7 +19,7 @@ if [ ! -f local-secrets.json ]; then
   sed -i "s/sample-secrets.json/local-secrets.json/g" local-secrets.json
 fi
 
-echo "OK"
+echo "Importing data ..."
 
 mkdir -p data
 python manage.py makemigrations
@@ -28,4 +28,4 @@ python manage.py loaddata config/fixtures/*.json
 
 exec "$@"
 
-# 2020.04.01-DEA
+# 2020.07.18-DEA
