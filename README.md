@@ -1,27 +1,19 @@
 # Django Template
 
-## Create Development Environment
+## Requirements
+
+[TODO]
+
+### Run Development Environment
 
 ```shell
-./make-devenv
+docker-compose up
 ```
 
-## Run Development Environment
+### Create Production Environment
 
 ```shell
-./run-server
-```
-
-## Clean Development Environment:
-
-```shell
-./make-clean
-```
-
-## Create Production Environment
-
-```shell
-./make-prod
+./make-prodenv
 ```
 
 Version: 2020.07.18-DEA

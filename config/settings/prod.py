@@ -37,23 +37,23 @@ INSTALLED_APPS += [
 
 # Databases
 
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'data', 'db.sqlite3'),
-#    }
-# } # [for SQLite3]
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_project_db',
-        'USER': get_secret('POSTGRES_USER'),
-        'PASSWORD': get_secret('POSTGRES_PASSWORD'),
-        'HOST': 'postgres.example.com',
-        'PORT': '5432',
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': os.path.join(BASE_DIR, 'data', 'db.sqlite3'),
+   }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'django_template',
+#         'USER': get_secret('POSTGRES_USER'),
+#         'PASSWORD': get_secret('POSTGRES_PASSWORD'),
+#         'HOST': 'postgres',
+#         'PORT': '5432',
+#     }
+# } # [for PostgresDB]
 
 # Static Files
 
@@ -67,7 +67,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Email Backend
 
-EMAIL_HOST = "mail.example.com"
+EMAIL_HOST = "mail.myusc.net"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
