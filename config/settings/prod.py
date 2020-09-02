@@ -7,7 +7,7 @@ from django.core.exceptions import ImproperlyConfigured
 # Secure Secret Key Logic
 
 # JSON-based secrets module
-with open(os.path.join(BASE_DIR, 'secrets.json')) as f:
+with open(os.path.join(BASE_DIR, "secrets.json")) as f:
     secrets = json.loads(f.read())
 
 
@@ -16,32 +16,32 @@ def get_secret(setting, secrets=secrets):
     try:
         return secrets[setting]
     except KeyError:
-        error_msg = 'Set the {0} environment variable'.format(setting)
+        error_msg = "Set the {0} environment variable".format(setting)
         raise ImproperlyConfigured(error_msg)
 
 
 # Basic Settings
 
-SECRET_KEY = get_secret('SECRET_KEY')
+SECRET_KEY = get_secret("SECRET_KEY")
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 # Installed Apps
 
 INSTALLED_APPS += [
-    'core',
-    'website',
+    "core",
+    "website",
 ]
 
 # Databases
 
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': os.path.join(BASE_DIR, 'data', 'db.sqlite3'),
-   }
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "data", "db.sqlite3"),
+    }
 }
 
 # DATABASES = {
@@ -57,13 +57,13 @@ DATABASES = {
 
 # Static Files
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Media Uploads
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Email Backend
 
@@ -73,8 +73,8 @@ EMAIL_USE_TLS = True
 
 # Login Settings
 
-LOGIN_URL = 'core:login'
-LOGOUT_REDIRECT_URL = 'website:home_page'
+LOGIN_URL = "core:login"
+LOGOUT_REDIRECT_URL = "website:home_page"
 
 # Security
 
@@ -86,7 +86,7 @@ SESSION_COOKIE_SECURE = True
 
 # Google ReCaptcha
 
-RECAPTCHA_SECRET_KEY = get_secret('RECAPTCHA_SECRET_KEY')
-RECAPTCHA_SITE_KEY = get_secret('RECAPTCHA_SITE_KEY')
+RECAPTCHA_SECRET_KEY = get_secret("RECAPTCHA_SECRET_KEY")
+RECAPTCHA_SITE_KEY = get_secret("RECAPTCHA_SITE_KEY")
 
 # 2020.07.18-DEA

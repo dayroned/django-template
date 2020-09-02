@@ -9,17 +9,15 @@ from django.conf import settings
 # Validates reCAPTCHA
 def recaptcha_validation(recaptcha_response):
     """ Begin reCAPTCHA validation """
-    data = {
-        'secret': settings.RECAPTCHA_SECRET_KEY,
-        'response': recaptcha_response
-    }
-    r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+    data = {"secret": settings.RECAPTCHA_SECRET_KEY, "response": recaptcha_response}
+    r = requests.post("https://www.google.com/recaptcha/api/siteverify", data=data)
     result = r.json()
     """ End reCAPTCHA validation """
 
-    if result['success']:
+    if result["success"]:
         return True
 
     return False
+
 
 # 2020.07.18-DEA

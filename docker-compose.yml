@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
+    container_name: django-app
     depends_on:
       - postgres
       - mailhog
@@ -16,12 +17,14 @@ services:
 
   postgres:
     image: postgres:12.3
+    container_name: django-db
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=qwerty123
 
   mailhog:
     image: mailhog/mailhog:v1.0.0
+    container_name: django-mailhog
     ports:
       - "8025:8025"
 

@@ -6,9 +6,9 @@ from django.views.generic.base import TemplateView
 
 # Home Page
 class HomePageView(TemplateView):
-    template_name = 'website/home_page.html'
+    template_name = "website/home_page.html"
 
 
 # Profile Page
 class DashboardView(LoginRequiredMixin, TemplateView):
-    template_name = 'website/dashboard.html'
+    template_name = "website/dashboard.html"
