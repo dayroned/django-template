@@ -7,7 +7,7 @@ Django Prod Settings
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["*.localhost", "localhost"]
+ALLOWED_HOSTS = [".localhost"]
 
 # Media Uploads
 

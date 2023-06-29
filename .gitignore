@@ -1,15 +1,15 @@
 # Development
 /.vscode
 /.env
+
+# Django
 /data
+/static
+/media
 
 # OS
 .DS_Store
 
-# Python Related
+# Python
 __pycache__
-
-# Django
-/db.sqlite3
-/static
-/media
+*.py[cod]

@@ -10,13 +10,13 @@ echo "This script sets up a new production enviroment!"
 echo "************************************************"
 echo
 
-read -p "Are you sure you want to continue? (yes/no) "
+read -r -p "Are you sure you want to continue? (yes/no) "
 if [ "$REPLY" != "yes" ]; then
   exit 0
 fi
 echo
 
-read -p "Are you sure? (type production to continue) "
+read -r -p "Are you sure? (type production to continue) "
 if [ "$REPLY" != "production" ]; then
   exit 0
 fi
