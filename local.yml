@@ -15,15 +15,26 @@ services:
       - 8000:8000
     depends_on:
       - postgres
+      - node
       - mailhog
   
   postgres:
-    image: postgres:15.2-alpine
+    image: postgres:15.4-alpine
     restart: always
     env_file:
       - .env
     ports:
       - 5432:5432
+
+  node:
+    build:
+      context: .
+      dockerfile: ./compose/local/node/Dockerfile
+    restart: always
+    tty: true
+    volumes:
+      - .:/app
+      - /app/node_modules
 
   mailhog:
     image: mailhog/mailhog:v1.0.1

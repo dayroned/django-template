@@ -36,7 +36,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -105,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/New_York"
 
 USE_I18N = True
 
@@ -128,17 +127,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Login
 
 LOGIN_URL = "website:login"
-LOGOUT_REDIRECT_URL = "website:home_page"
+LOGIN_REDIRECT_URL = "website:dashboard"
+LOGOUT_REDIRECT_URL = "website:home"
 
 # Google ReCaptcha
 
 RECAPTCHA_SECRET_KEY = os.environ.get("RECAPTCHA_SECRET_KEY")
 RECAPTCHA_SITE_KEY = os.environ.get("RECAPTCHA_SITE_KEY")
-
-# Whitenoise
-
-STORAGES = {
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}

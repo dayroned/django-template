@@ -1,0 +1,68 @@
+{% extends 'website/base.html' %}
+
+{% load static %}
+
+{% block title %}{{ block.super }} | Login{% endblock title %}
+
+{% block head_js %}
+
+<!-- begin-recaptcha -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    function onSubmit(token) {
+        document.getElementById("form-signin").submit();
+    }
+</script>
+
+<style>
+    .grecaptcha-badge {
+        display: none;
+    }
+</style>
+<!-- end-recaptcha -->
+
+{% endblock head_js %}
+
+{% block contents %}
+
+<div class="flex h-screen flex-col justify-center px-6 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col items-center gap-4">
+        <img class="h-11" src="{% static 'website/images/favicons/android-chrome-192x192.png' %}" alt="Django Template Logo">
+        <h2 class="text-center text-2xl font-bold leading-9 tracking-tight text-green-950">Sign in to your account</h2>
+    </div>
+
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form id="form-signin" method="post" class="space-y-6">
+            {% csrf_token %}
+
+            <div>
+                <label for="username" class="block text-sm font-medium leading-6 text-green-950">Username</label>
+                <div class="mt-2">
+                    <input id="username" name="username" type="text" autocomplete="username" autofocus required class="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 sm:text-md sm:leading-6" placeholder="john.doe">
+                </div>
+            </div>
+
+            <div>
+                <div class="flex items-center justify-between">
+                    <label for="password" class="block text-sm font-medium leading-6 text-green-950">Password</label>
+                </div>
+                <div class="mt-2">
+                    <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 sm:text-md sm:leading-6" placeholder="super-secret-password">
+                </div>
+            </div>
+
+            {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+            <p class="text-orange-600 px-4 text-center">{{ error }}</p>
+            {% endfor %}
+            {% endif %}
+
+            <div class="pt-8">
+                <input type="hidden" name="next" value="{{ next }}" />
+                <button type="submit" data-sitekey="{{ recaptcha_site_key }}" data-callback='onSubmit' class="flex w-full justify-center rounded-md bg-green-950 px-3 py-2.5 text-md font-semibold leading-6 text-white shadow-sm hover:bg-green-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-900 g-recaptcha">Log in</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock contents %}

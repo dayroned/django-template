@@ -1,0 +1,32 @@
+{% extends 'website/base.html' %}
+
+{% load static %}
+
+{% block title %}{{ block.super }} | Home{% endblock title %}
+
+{% block contents %}
+
+<div class="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-40 lg:flex lg:px-8 lg:pt-40">
+    <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
+        <div class="flex flex-row gap-4 items-center">
+            <img class="h-11" src="{% static 'website/images/django_logo.png' %}" alt="Django Icon">
+            <span class="text-xl text-gray-500">+</span>
+            <img class="h-11" src="https://tailwindui.com/img/logos/mark.svg?color=cyan&shade=400" alt="Tailwind Icon">
+        </div>
+        <div class="mt-16">
+            <span id="last-updated" class="rounded-full bg-gray-500/10 px-3 py-2 text-sm font-semibold leading-6 text-gray-400 ring-1 ring-inset ring-gray-500/20">Version: January 2024</span>
+        </div>
+        <h1 class="mt-10 text-4xl font-bold tracking-tight text-green-950 sm:text-6xl">Django Template</h1>
+        <p class="mt-6 text-lg leading-8 text-gray-500">
+            This Django template serves as the starting point for our Django apps, including user authentication, dynamic routing, database integration and Tailwind CSS.
+        </p>
+        <div class="mt-10 flex flex-row items-center gap-x-6">
+            <a href="{% url 'website:dashboard' %}" class="rounded-md bg-green-950 px-6 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-green-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-900">Go to Dashboard</a>
+            {% if user.is_authenticated %}
+            <p class="text-gray-500"> &#x2611; Authenticated as: {{ user.username }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock contents %}

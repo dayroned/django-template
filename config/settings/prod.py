@@ -7,18 +7,13 @@ Django Prod Settings
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["*.localhost", "localhost"]
-
-# Media Uploads
-
-MEDIA_URL = "media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+ALLOWED_HOSTS = [".localhost"]
 
 # Email Backend
 
 EMAIL_HOST = "localhost"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_PORT = 25
+EMAIL_USE_TLS = False
 
 # Security
 
