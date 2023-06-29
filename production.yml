@@ -16,10 +16,10 @@ services:
       - caddy
 
   postgres:
-    image: postgres:15.2-alpine
+    image: postgres:15.3-alpine
     restart: always
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
     env_file:
       - .env
 
@@ -31,10 +31,10 @@ services:
       - caddy-data:/data
       - caddy-config:/config
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
+      - 443:443
 
 volumes:
-  db-data:
+  postgres-data:
   caddy-data:
   caddy-config:

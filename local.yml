@@ -18,7 +18,7 @@ services:
       - mailhog
   
   postgres:
-    image: postgres:15.2-alpine
+    image: postgres:15.3-alpine
     restart: always
     env_file:
       - .env
