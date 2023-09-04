@@ -1,9 +1,5 @@
 #!/bin/bash
 
-set -o errexit
-set -o pipefail
-set -o nounset
-
 export COMPOSE_FILE=local.yml
 
 stop_stack()

@@ -1,9 +1,5 @@
 #!/bin/bash
 
-set -o errexit
-set -o pipefail
-set -o nounset
-
 export COMPOSE_FILE=production.yml
 
 echo
@@ -12,17 +8,19 @@ echo "This script STOPS the production environment!"
 echo "*********************************************"
 echo
 
-read -r -p "Are you sure you want to continue? (yes/no) "
-if [ "$REPLY" != "yes" ]; then
-  exit 0
-fi
-echo
+if [ -z "${AUTO_DEPLOY:-}" ]; then
+  read -r -p "Are you sure you want to continue? (yes/no) "
+  if [ "$REPLY" != "yes" ]; then
+    exit 0
+  fi
+  echo
 
-read -r -p "Are you sure? (type production to continue) "
-if [ "$REPLY" != "production" ]; then
-  exit 0
+  read -r -p "Are you sure? (type production to continue) "
+  if [ "$REPLY" != "production" ]; then
+    exit 0
+  fi
+  echo
 fi
-echo
 
 echo "Stopping compose environment..."
 docker compose down
