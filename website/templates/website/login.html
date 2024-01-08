@@ -7,14 +7,14 @@
 <!-- being-recaptcha -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
-	function onSubmit(token) {
-		document.getElementById("form-signin").submit();
-	}
+  function onSubmit(token) {
+    document.getElementById("form-signin").submit();
+  }
 </script>
 <style>
-	.grecaptcha-badge {
-		display: none;
-	}
+  .grecaptcha-badge {
+    display: none;
+  }
 </style>
 <!-- end-recaptcha -->
 
@@ -23,7 +23,7 @@
 {% block contents %}
 
 <form class="form-signin" id="form-signin" method="post">
-	{% csrf_token %}
+  {% csrf_token %}
   <h1 class="h3 mb-3 font-weight-normal">Login Page</h1>
 
   <label for="inputEmail" class="sr-only">Email address</label>
@@ -37,7 +37,7 @@
   {% endif %}
 
   <input type="hidden" name="next" value="{{ next }}" />
-	<button class="btn btn-primary g-recaptcha mt-1" type="submit" data-sitekey="{{ recaptcha_site_key }}" data-callback='onSubmit'>Login</button>
+  <button class="bg-blue-500 text-white btn btn-primary g-recaptcha mt-1" type="submit" data-sitekey="{{ recaptcha_site_key }}" data-callback='onSubmit'>Login</button>
 </form>
 
 {% endblock contents %}

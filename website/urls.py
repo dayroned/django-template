@@ -10,14 +10,14 @@ app_name = "website"
 
 # fmt: off
 urlpatterns = [
-    # Home Page
-    path("", HomePageView.as_view(), name="home_page"),
+    # Home
+    path("", HomeView.as_view(), name="home"),
     
     # Dashboard
     path("dashboard", DashboardView.as_view(), name="dashboard"),
 
     # Login
-    path("auth/login", login_page, name="login"),
+    path("auth/login", LoginView.as_view(), name="login"),
 
     # Logout
     path("auth/logout", LogoutView.as_view(), name="logout"),

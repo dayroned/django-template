@@ -9,6 +9,6 @@
 <p class="text-muted">User authenticated as: {{ request.user.username }}.</p>
 
 <a class="btn btn-primary" href="{% url 'website:logout' %}" role="button">Logout</a>
-<a class="btn btn-secondary" href="{% url 'website:home_page' %}" role="button">Back to Home</a>
+<a class="btn btn-secondary" href="{% url 'website:home' %}" role="button">Back to Home</a>
 
 {% endblock contents %}

@@ -8,7 +8,6 @@ django = "~=4.2"
 psycopg = {version = "~=3.1", extras = ["binary"]}
 requests = "~=2.31"
 gunicorn = "~=21.2"
-whitenoise = "~=6.5"
 
 [dev-packages]
 black = "*"

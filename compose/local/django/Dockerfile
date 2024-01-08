@@ -27,5 +27,8 @@ RUN chmod +x /start.sh
 # copy project
 COPY . /app
 
+# expose port 8000
+EXPOSE 8000
+
 # run entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

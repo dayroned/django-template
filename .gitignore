@@ -2,11 +2,12 @@
 /.vscode
 /.env
 /data
+/node_modules
 
 # OS
 .DS_Store
 
-# Python Related
+# Python
 __pycache__
 *.py[cod]
 
@@ -14,3 +15,6 @@ __pycache__
 /db.sqlite3
 /static
 /media
+
+# Tailwind
+/website/static/website/css/tailwind.css
