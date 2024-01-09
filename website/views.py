@@ -2,8 +2,7 @@ from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import SuspiciousOperation
-from django.shortcuts import redirect, resolve_url
+from django.shortcuts import resolve_url
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 
@@ -20,6 +19,10 @@ class HomeView(TemplateView):
 # Dashboard
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = "website/dashboard.html"
+    
+    def get(self, request, *args, **kwargs):
+        request.session['visited_dashboard'] = True
+        return super().get(request, *args, **kwargs)
 
 
 # Login

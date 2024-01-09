@@ -1,20 +1,21 @@
 {% extends 'website/base.html' %}
 
-{% block title %}{{ block.super }} | Login Page{% endblock title %}
+{% block title %}{{ block.super }} | Login {% endblock title %}
 
 {% block head_js %}
 
-<!-- being-recaptcha -->
+<!-- start-recaptcha -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
-  function onSubmit(token) {
-    document.getElementById("form-signin").submit();
-  }
+    function onSubmit(token) {
+        document.getElementById("form-signin").submit();
+    }
 </script>
+
 <style>
-  .grecaptcha-badge {
-    display: none;
-  }
+    .grecaptcha-badge {
+        display: none;
+    }
 </style>
 <!-- end-recaptcha -->
 
@@ -22,22 +23,41 @@
 
 {% block contents %}
 
-<form class="form-signin" id="form-signin" method="post">
-  {% csrf_token %}
-  <h1 class="h3 mb-3 font-weight-normal">Login Page</h1>
+<div class="flex h-screen flex-col justify-center px-6 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-green-950">Sign in to your account</h2>
+    </div>
 
-  <label for="inputEmail" class="sr-only">Email address</label>
-  <input type="email" id="inputEmail" name="username" class="form-control" placeholder="Username" required autofocus>
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form id="form-signin" method="post" class="space-y-6">
+            {% csrf_token %}
 
-  <label for="inputPassword" class="sr-only">Password</label>
-  <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+            <div>
+                <label for="username" class="block text-sm font-medium leading-6 text-green-950">Username</label>
+                <div class="mt-2">
+                    <input id="username" name="username" type="text" autocomplete="username" autofocus required class="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 sm:text-md sm:leading-6" placeholder="john.doe">
+                </div>
+            </div>
 
-  {% if form.errors %}
-  <p class="text-muted">Your username and password didn't match. Please try again.</p>
-  {% endif %}
+            <div>
+                <div class="flex items-center justify-between">
+                    <label for="password" class="block text-sm font-medium leading-6 text-green-950">Password</label>
+                </div>
+                <div class="mt-2">
+                    <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 sm:text-md sm:leading-6" placeholder="super-secret-password">
+                </div>
+            </div>
 
-  <input type="hidden" name="next" value="{{ next }}" />
-  <button class="bg-blue-500 text-white btn btn-primary g-recaptcha mt-1" type="submit" data-sitekey="{{ recaptcha_site_key }}" data-callback='onSubmit'>Login</button>
-</form>
+            {% if form.errors %}
+            <p class="text-orange-600 px-4 text-center">Your username and password didn't match.</p>
+            {% endif %}
+
+            <div class="pt-8">
+                <input type="hidden" name="next" value="{{ next }}" />
+                <button type="submit" data-sitekey="{{ recaptcha_site_key }}" data-callback='onSubmit' class="flex w-full justify-center rounded-md bg-green-950 px-3 py-2.5 text-md font-semibold leading-6 text-white shadow-sm hover:bg-green-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-900 g-recaptcha">Log in</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 {% endblock contents %}

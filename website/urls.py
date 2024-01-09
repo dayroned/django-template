@@ -17,9 +17,9 @@ urlpatterns = [
     path("dashboard", DashboardView.as_view(), name="dashboard"),
 
     # Login
-    path("auth/login", LoginView.as_view(), name="login"),
+    path("sign-in", LoginView.as_view(), name="login"),
 
     # Logout
-    path("auth/logout", LogoutView.as_view(), name="logout"),
+    path("sign-out", LogoutView.as_view(), name="logout"),
 ]
 # fmt: on
