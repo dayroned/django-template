@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}{{ block.super }}{% endblock title %}
+{% block title %}{{ block.super }} | Home{% endblock title %}
 
 {% block contents %}
 
@@ -14,7 +14,7 @@
             <img class="h-11" src="https://tailwindui.com/img/logos/mark.svg?color=cyan&shade=400" alt="Tailwind Icon">
         </div>
         <div class="mt-16">
-            <span id="last-updated" class="rounded-full bg-gray-500/10 px-3 py-2 text-sm font-semibold leading-6 text-gray-400 ring-1 ring-inset ring-gray-500/20">Last updated: ---</span>
+            <span id="last-updated" class="rounded-full bg-gray-500/10 px-3 py-2 text-sm font-semibold leading-6 text-gray-400 ring-1 ring-inset ring-gray-500/20">Version: January 2024</span>
         </div>
         <h1 class="mt-10 text-4xl font-bold tracking-tight text-green-950 sm:text-6xl">Django Template</h1>
         <p class="mt-6 text-lg leading-8 text-gray-500">
@@ -30,19 +30,3 @@
 </div>
 
 {% endblock contents %}
-
-{% block js %}
-<script>
-    fetch('https://api.github.com/repos/dayroned/django-template/commits')
-        .then(response => response.json())
-        .then(data => {
-            const latestCommitDate = new Date(data[0].commit.committer.date)
-            const formattedDate = latestCommitDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'numeric',
-                day: 'numeric'
-            })
-            document.getElementById('last-updated').textContent = `Last updated: ${formattedDate}`
-        })
-</script>
-{% endblock js %}

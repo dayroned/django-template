@@ -19,10 +19,6 @@ class HomeView(TemplateView):
 # Dashboard
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = "website/dashboard.html"
-    
-    def get(self, request, *args, **kwargs):
-        request.session['visited_dashboard'] = True
-        return super().get(request, *args, **kwargs)
 
 
 # Login

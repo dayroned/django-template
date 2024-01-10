@@ -1,10 +1,10 @@
 {% extends 'website/base.html' %}
 
-{% block title %}{{ block.super }} | Login {% endblock title %}
+{% block title %}{{ block.super }} | Login{% endblock title %}
 
 {% block head_js %}
 
-<!-- start-recaptcha -->
+<!-- begin-recaptcha -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
     function onSubmit(token) {

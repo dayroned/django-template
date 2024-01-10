@@ -25,7 +25,7 @@
 </head>
 
 <body class="bg-green-50">
-    {% if request.session.visited_dashboard and user.is_authenticated %}
+    {% if user.is_authenticated %}
     <nav class="bg-green-900">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">

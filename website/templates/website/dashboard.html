@@ -8,8 +8,8 @@
 
 <div class="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-40 lg:px-8">
     <div class="px-4 sm:px-0">
-        <h3 class="text-base font-semibold leading-7 text-green-950">App Info</h3>
-        <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Various details about the django template</p>
+        <h3 class="text-base font-semibold leading-7 text-green-950">Django Template</h3>
+        <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Available variables</p>
     </div>
     <div class="mt-6 border-t border-gray-200">
         <dl class="divide-y divide-gray-200">
@@ -34,8 +34,8 @@
                 <dd class="mt-1 text-sm leading-6 text-gray-500 sm:col-span-2 sm:mt-0">Docker</dd>
             </div>
             <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt class="text-sm font-medium leading-6 text-green-950">Last updated</dt>
-                <dd id="last-updated" class="mt-1 text-sm leading-6 text-gray-500 sm:col-span-2 sm:mt-0">---</dd>
+                <dt class="text-sm font-medium leading-6 text-green-950">Version</dt>
+                <dd id="last-updated" class="mt-1 text-sm leading-6 text-gray-500 sm:col-span-2 sm:mt-0">January 2024</dd>
             </div>
             <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                 <dt class="text-sm font-medium leading-6 text-green-950">Current User</dt>
@@ -46,14 +46,3 @@
 </div>
 
 {% endblock contents %}
-
-{% block js %}
-<script>
-    fetch('https://api.github.com/repos/dayroned/django-template/commits')
-        .then(response => response.json())
-        .then(data => {
-            const latestCommitDate = new Date(data[0].commit.committer.date)
-            document.getElementById('last-updated').textContent = latestCommitDate
-        })
-</script>
-{% endblock js %}
