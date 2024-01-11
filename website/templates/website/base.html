@@ -9,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'website/images/apple-touch-icon.png' %}/">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'website/images/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'website/images/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'website/images/site.webmanifest' %}">
-    <link rel="icon" href="{% static 'website/images/favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'website/images/favicons/apple-touch-icon.png' %}/">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'website/images/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'website/images/favicons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'website/images/favicons/site.webmanifest' %}">
+    <link rel="icon" href="{% static 'website/images/favicons/favicon.ico' %}">
 
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'website/css/tailwind.css' %}" />
@@ -30,13 +30,13 @@
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
                 <div class="flex flex-1 items-center sm:justify-start">
-                    <img class="h-11" src="{% static 'website/images/android-chrome-192x192.png' %}" alt="Django Icon">
+                    <img class="h-11" src="{% static 'website/images/favicons/android-chrome-192x192.png' %}" alt="Django Icon">
                     <div class="ml-6">
                         <div class="flex space-x-4">
                             {% url 'website:home' as home_url %}
                             {% url 'website:dashboard' as dashboard_url %}
-                            <a href="{{ home_url }}" class="{% if request.path == home_url %}text-green-400{% else %}text-green-50 hover:text-green-200{% endif %} uppercase px-2 py-2 text-sm font-medium" aria-current="page">Home</a>
-                            <a href="{{ dashboard_url }}" class="{% if request.path == dashboard_url %}text-green-400{% else %}text-green-50 hover:text-green-200{% endif %} uppercase rounded-md px-2 py-2 text-sm font-medium">Dashboard</a>
+                            <a href="{{ home_url }}" class="{% if request.path == home_url %}text-green-400{% else %}text-green-50 hover:text-green-200{% endif %} uppercase px-2 py-2 text-sm font-medium hover:cursor-pointer" aria-current="page">Home</a>
+                            <a href="{{ dashboard_url }}" class="{% if request.path == dashboard_url %}text-green-400{% else %}text-green-50 hover:text-green-200{% endif %} uppercase rounded-md px-2 py-2 text-sm font-medium hover:cursor-pointer">Dashboard</a>
                         </div>
                     </div>
                 </div>
