@@ -1,12 +1,10 @@
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView as AuthLoginView
+from django.contrib.auth.views import LoginView
 from django.shortcuts import resolve_url
 from django.views.generic.base import TemplateView
 
 from .forms import RecaptchaAuthenticationForm
-
-# Application Views
 
 
 # Home
@@ -20,7 +18,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 
 
 # Login
-class LoginView(AuthLoginView):
+class RecaptchaLoginView(LoginView):
     template_name = "website/login.html"
     form_class = RecaptchaAuthenticationForm
 

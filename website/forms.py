@@ -4,8 +4,6 @@ from django.core.exceptions import ValidationError
 
 from .utils import recaptcha_validation
 
-# Application Forms
-
 
 class RecaptchaAuthenticationForm(AuthenticationForm):
     error_messages = {

@@ -2,8 +2,6 @@ import requests
 
 from django.conf import settings
 
-# Application Utils
-
 
 # Adapted from: https://simpleisbetterthancomplex.com/tutorial/2017/02/21/how-to-add-recaptcha-to-django-site.html
 # Validates reCAPTCHA

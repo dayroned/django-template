@@ -6,12 +6,20 @@ stop_stack()
 {
     echo "Stopping compose environment..."
     docker compose down
+
+    echo "Removing media directory..."
+    if [ -d media ]; then
+        rm -rf media
+    fi
 }
 
 if [ ! -f .env ]; then
     echo "Creating .env file from example..."
     cp .env.example .env
 fi
+
+echo "Creating media directory..."
+mkdir -p media
 
 echo "Building compose environment..."
 docker compose build

@@ -3,4 +3,18 @@
         on_demand
     }
     reverse_proxy django:5000
+
+    # Static files
+    route /static/* {
+        uri strip_prefix /static/
+        root * /app/static
+        file_server
+    }
+
+    # Media files
+    route /media/* {
+        uri strip_prefix /media/
+        root * /app/media
+        file_server
+    }
 }

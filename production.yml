@@ -7,6 +7,9 @@ services:
       dockerfile: ./compose/production/django/Dockerfile
     command: /start.sh
     restart: always
+    volumes:
+      - django-static:/app/static
+      - django-media:/app/media
     env_file:
       - .env
     depends_on:
@@ -27,11 +30,15 @@ services:
       - ./compose/production/caddy/Caddyfile:/etc/caddy/Caddyfile
       - caddy-data:/data
       - caddy-config:/config
+      - django-static:/app/static
+      - django-media:/app/media
     ports:
       - 80:80
       - 443:443
 
 volumes:
+  django-media:
+  django-static:
   postgres-data:
   caddy-data:
   caddy-config:
