@@ -10,7 +10,13 @@
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
     function onSubmit(token) {
-        document.getElementById("form-signin").submit();
+        var form = document.getElementById("form-signin");
+        if (form.reportValidity()) {
+            form.submit();
+        }
+        else {
+            grecaptcha.reset();
+        }
     }
 </script>
 
@@ -38,7 +44,7 @@
             <div>
                 <label for="username" class="block text-sm font-medium leading-6 text-green-950">Username</label>
                 <div class="mt-2">
-                    <input id="username" name="username" type="text" autocomplete="username" autofocus required class="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 sm:text-md sm:leading-6" placeholder="john.doe">
+                    <input id="username" name="username" type="text" autocomplete="username" autofocus autocapitalize="none" required class="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 sm:text-md sm:leading-6" placeholder="john.doe">
                 </div>
             </div>
 

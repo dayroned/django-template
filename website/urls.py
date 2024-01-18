@@ -3,8 +3,6 @@ from django.urls import path
 
 from .views import *
 
-# Application Routes (URLs)
-
 
 app_name = "website"
 
@@ -17,9 +15,9 @@ urlpatterns = [
     path("dashboard", DashboardView.as_view(), name="dashboard"),
 
     # Login
-    path("sign-in", LoginView.as_view(), name="login"),
+    path("login", RecaptchaLoginView.as_view(), name="login"),
 
     # Logout
-    path("sign-out", LogoutView.as_view(), name="logout"),
+    path("logout", LogoutView.as_view(), name="logout"),
 ]
 # fmt: on
