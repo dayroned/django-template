@@ -7,7 +7,7 @@ Django Prod Settings
 
 DEBUG = False
 
-ALLOWED_HOSTS = [".localhost"]
+ALLOWED_HOSTS = ["*"]
 
 # Email Backend
 

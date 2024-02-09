@@ -17,4 +17,4 @@ __pycache__
 /media
 
 # Tailwind
-/website/static/website/css/tailwind.css
+/website/static/website/css/styles.css

@@ -1,20 +1,24 @@
-:443 {
-    tls internal {
-        on_demand
-    }
-    reverse_proxy django:5000
+{
+  servers {
+    trusted_proxies static 172.16.0.0/12
+  }
+}
 
-    # Static files
-    route /static/* {
-        uri strip_prefix /static/
-        root * /app/static
-        file_server
-    }
+:80 {
+  # Django application
+  reverse_proxy http://django:5000
+  
+  # Static files
+  route /static/* {
+    uri strip_prefix /static/
+    root * /app/static
+    file_server
+  }
 
-    # Media files
-    route /media/* {
-        uri strip_prefix /media/
-        root * /app/media
-        file_server
-    }
+  # Media files
+  route /media/* {
+    uri strip_prefix /media/
+    root * /app/media
+    file_server
+  }
 }

@@ -12,6 +12,8 @@ services:
       - django-media:/app/media
     env_file:
       - .env
+    networks:
+      - backend
     depends_on:
       - postgres
 
@@ -22,23 +24,30 @@ services:
       - postgres-data:/var/lib/postgresql/data
     env_file:
       - .env
+    networks:
+      - backend
 
   caddy:
     image: caddy:2-alpine
     restart: always
     volumes:
       - ./compose/production/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - caddy-data:/data
-      - caddy-config:/config
       - django-static:/app/static
       - django-media:/app/media
-    ports:
-      - 80:80
-      - 443:443
+    env_file:
+      - .env
+    networks:
+      backend:
+      ingress-web:
+        aliases:
+          - ${APP_UNIQUE_IDENTIFIER}
 
 volumes:
   django-media:
   django-static:
   postgres-data:
-  caddy-data:
-  caddy-config:
+
+networks:
+  backend:
+  ingress-web:
+    external: true
