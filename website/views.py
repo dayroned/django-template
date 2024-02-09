@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.shortcuts import resolve_url
 from django.views.generic.base import TemplateView
 
 from .forms import RecaptchaAuthenticationForm

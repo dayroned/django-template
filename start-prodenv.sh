@@ -30,6 +30,12 @@ if [ ! -f .env ]; then
 fi
 echo "Done"
 
+echo "Creating ingress-web network if it doesn't exists..."
+if [ ! "$(docker network ls -q -f name=ingress-web)" ]; then
+  docker network create ingress-web
+fi
+echo "Done"
+
 echo "Building compose environment..."
 docker compose build
 
