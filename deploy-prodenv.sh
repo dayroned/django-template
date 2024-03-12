@@ -1,6 +1,8 @@
 #!/bin/bash
 
-export COMPOSE_FILE=production.yml
+export COMPOSE_FILE=production.yaml
+
+INGRESS_WEB=ingress-web
 
 echo
 echo "**********************************************"
@@ -25,23 +27,27 @@ fi
 echo "Checking .env file..."
 if [ ! -f .env ]; then
   echo "[ERROR] Missing .env file! Aborting..."
-  echo
   exit 1
 fi
-echo "Done"
+echo
 
-echo "Creating ingress-web network if it doesn't exists..."
-if [ ! "$(docker network ls -q -f name=ingress-web)" ]; then
-  docker network create ingress-web
+echo "Creating ${INGRESS_WEB} network if it doesn't exists..."
+if [ ! "$(docker network ls -q -f name=${INGRESS_WEB})" ]; then
+  docker network create ${INGRESS_WEB}
 fi
-echo "Done"
+echo
+
+echo "Stopping compose environment if it is running..."
+docker compose down
+echo
 
 echo "Building compose environment..."
 docker compose build
+echo
 
 echo "Starting compose environment..."
 docker compose up -d
-
 echo
+
 echo "Environment Ready!"
 echo
