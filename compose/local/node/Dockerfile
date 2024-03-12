@@ -4,11 +4,14 @@ ENV NODE_ENV=development
 
 WORKDIR /app
 
-COPY package.json /app/package.json
-COPY package-lock.json /app/package-lock.json
+RUN apk update && apk add --no-cache tini
 
+COPY package*.json ./
 RUN npm install
 
-COPY . /app
+COPY ./compose/local/node/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-CMD ["npm", "run", "tailwind:watch"]
+VOLUME /app
+
+ENTRYPOINT ["/sbin/tini", "--", "/entrypoint.sh"]

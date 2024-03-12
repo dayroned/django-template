@@ -12,10 +12,10 @@ This template serves as a straightforward boilerplate to kick-start your Django 
 ./run-devenv.sh
 ```
 
-### Start Production Environment
+### Deploy Production Environment
 
 ```bash
-./start-prodenv.sh
+./deploy-prodenv.sh
 ```
 
 ### Stop Production Environment
@@ -26,4 +26,4 @@ This template serves as a straightforward boilerplate to kick-start your Django 
 
 ## Version
 
-2024.02.08 (February 2024)
+2024.04.26 (April 2024)

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export COMPOSE_FILE=production.yml
+export COMPOSE_FILE=production.yaml
 
 echo
 echo "*********************************************"
@@ -24,7 +24,7 @@ fi
 
 echo "Stopping compose environment..."
 docker compose down
-
 echo
+
 echo "Environment Stopped!"
 echo

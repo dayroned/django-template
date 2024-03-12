@@ -1,11 +1,8 @@
-version: "3"
-
 services:
   django:
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
-    command: /start.sh
     restart: always
     volumes:
       - .:/app
@@ -19,7 +16,7 @@ services:
       - mailhog
   
   postgres:
-    image: postgres:15.4-alpine
+    image: postgres:16.2-alpine
     restart: always
     env_file:
       - .env
