@@ -7,7 +7,7 @@ name = "pypi"
 django = "~=4.2"
 psycopg = {version = "~=3.1", extras = ["binary"]}
 requests = "~=2.31"
-pillow = "~=10.2"
+pillow = "~=10.3"
 gunicorn = "~=21.2"
 
 [requires]
