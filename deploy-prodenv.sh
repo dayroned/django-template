@@ -5,9 +5,9 @@ export COMPOSE_FILE=production.yaml
 INGRESS_WEB=ingress-web
 
 echo
-echo "**********************************************"
-echo "This script STARTS the production environment!"
-echo "**********************************************"
+echo "***********************************************"
+echo "This script DEPLOYS the production environment!"
+echo "***********************************************"
 echo
 
 if [ -z "${AUTO_DEPLOY:-}" ]; then
