@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 django = "~=4.2"
 psycopg = {version = "~=3.1", extras = ["binary"]}
-requests = "~=2.31"
+requests = "~=2.32"
 pillow = "~=10.2"
 gunicorn = "~=22.0"
 
