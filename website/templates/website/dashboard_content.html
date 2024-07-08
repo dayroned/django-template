@@ -1,0 +1,59 @@
+<div class="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-40 lg:px-8 lg:pt-20 bg-red-100">
+    <div class="px-4 sm:px-0">
+        <h3 class="text-base font-semibold leading-7 text-green-950">Django Template</h3>
+    </div>
+    <div class="mt-6 border-t border-gray-200">
+        <dl class="divide-y divide-gray-200">
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <dt class="text-sm font-medium leading-6 text-green-950">Django Version</dt>
+                <dd class="mt-1 text-sm leading-6 text-gray-500 sm:col-span-2 sm:mt-0">4.2</dd>
+            </div>
+        </dl>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('htmx:beforeOnLoad', function (evt) {
+        let content = document.getElementById('content');
+        let newUrl = evt.detail.path;
+        if (newUrl.includes('/')) {
+            content.classList.add('slide-out-left');
+        }
+    });
+    document.addEventListener('htmx:afterOnLoad', function (evt) {
+        let content = document.getElementById('content');
+        content.classList.remove('slide-out-left');
+        if (window.location.pathname.includes('/dashboard')) {
+            content.classList.add('slide-in-right');
+        }
+    });
+</script>
+<style>
+    .slide-out-left {
+        animation: slide-out-left 0.5s forwards;
+    }
+
+    .slide-in-right {
+        animation: slide-in-right 0.5s forwards;
+    }
+
+    @keyframes slide-out-left {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-100%);
+        }
+    }
+
+    @keyframes slide-in-right {
+        from {
+            transform: translateX(100%);
+        }
+
+        to {
+            transform: translateX(0);
+        }
+    }
+</style>

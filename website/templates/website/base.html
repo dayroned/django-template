@@ -18,6 +18,8 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'website/css/styles.css' %}" />
 
+    <script src="https://unpkg.com/htmx.org@2.0.0" integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw" crossorigin="anonymous"></script>
+
     <title>{% block title %}Django Template{% endblock title %}</title>
 
     <!-- Head JavaScript -->
@@ -26,7 +28,7 @@
 
 <body class="bg-green-50">
     {% if user.is_authenticated %}
-    <nav class="bg-green-900">
+    <nav class="bg-green-900 absolute z-50 w-full">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
                 <div class="flex flex-1 items-center sm:justify-start">
@@ -35,8 +37,11 @@
                         <div class="flex space-x-4">
                             {% url 'website:home' as home_url %}
                             {% url 'website:dashboard' as dashboard_url %}
-                            <a href="{{ home_url }}" class="{% if request.path == home_url %}text-green-400{% else %}text-green-50 hover:text-green-200{% endif %} uppercase px-2 py-2 text-sm font-medium hover:cursor-pointer" aria-current="page">Home</a>
-                            <a href="{{ dashboard_url }}" class="{% if request.path == dashboard_url %}text-green-400{% else %}text-green-50 hover:text-green-200{% endif %} uppercase rounded-md px-2 py-2 text-sm font-medium hover:cursor-pointer">Dashboard</a>
+
+
+                            <a href="{{ home_url }}" hx-get="{{ home_url }}" hx-target="#content" hx-swap="innerHTML" hx-push-url="true" class="nav-link {% if request.path == home_url %}text-green-400{% else %}text-green-50 hover:text-green-200{% endif %} uppercase px-2 py-2 text-sm font-medium hover:cursor-pointer" aria-current="page">Home</a>
+
+                            <a href="{{ dashboard_url }}" hx-get="{{ dashboard_url }}" hx-target="#content" hx-swap="innerHTML" hx-push-url="true" class="nav-link {% if request.path == dashboard_url %}text-green-400{% else %}text-green-50 hover:text-green-200{% endif %} uppercase rounded-md px-2 py-2 text-sm font-medium hover:cursor-pointer">Dashboard</a>
                         </div>
                     </div>
                 </div>
@@ -48,11 +53,29 @@
     </nav>
     {% endif %}
     <main>
-        {% block contents %}{% endblock contents %}
+        <div id="content" class="absolute inset-0 z-0">
+            {% block contents %}{% endblock contents %}
+        </div>
+        <div id="incoming-content" class="absolute inset-0 hidden"></div>
     </main>
 
     <!-- JavaScript -->
     {% block js %}{% endblock js %}
+    <script>
+        document.addEventListener('htmx:afterOnLoad', function (evt) {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const currentPath = window.location.pathname;
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('text-green-400');
+                    link.classList.remove('text-green-50', 'hover:text-green-200');
+                } else {
+                    link.classList.add('text-green-50', 'hover:text-green-200');
+                    link.classList.remove('text-green-400');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
