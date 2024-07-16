@@ -3,8 +3,8 @@ Django Base Settings
 
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent  # [Added one level]
@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent  # [Added one level]
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True # [See custom settings]
@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_recaptcha",
     "website.apps.WebsiteConfig",
 ]
 
@@ -71,11 +72,11 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("SQL_DATABASE"),
-        "USER": os.environ.get("SQL_USER"),
-        "PASSWORD": os.environ.get("SQL_PASSWORD"),
-        "HOST": os.environ.get("SQL_HOST"),
-        "PORT": os.environ.get("SQL_PORT"),
+        "NAME": os.environ["SQL_DATABASE"],
+        "USER": os.environ["SQL_USER"],
+        "PASSWORD": os.environ["SQL_PASSWORD"],
+        "HOST": os.environ["SQL_HOST"],
+        "PORT": os.environ["SQL_PORT"],
     }
 }
 
@@ -119,7 +120,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # Media files
 
 MEDIA_URL = "media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 # Default primary key field type
@@ -136,7 +137,7 @@ LOGIN_URL = "website:login"
 LOGIN_REDIRECT_URL = "website:dashboard"
 LOGOUT_REDIRECT_URL = "website:home"
 
-# Google ReCaptcha
+# Google ReCaptcha (django-recaptcha)
 
-RECAPTCHA_SECRET_KEY = os.environ.get("RECAPTCHA_SECRET_KEY")
-RECAPTCHA_SITE_KEY = os.environ.get("RECAPTCHA_SITE_KEY")
+RECAPTCHA_PUBLIC_KEY = os.environ["RECAPTCHA_PUBLIC_KEY"]
+RECAPTCHA_PRIVATE_KEY = os.environ["RECAPTCHA_PRIVATE_KEY"]

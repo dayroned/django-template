@@ -40,8 +40,8 @@ services:
           - ${APP_UNIQUE_IDENTIFIER}
 
 volumes:
-  django-media:
   django-static:
+  django-media:
   postgres-data:
 
 networks:

@@ -1,11 +1,11 @@
 # Stage 1: Build frontend assets using Node.js
-FROM node:18-alpine as frontend-build
+FROM node:18-alpine AS frontend-build
 
 ENV NODE_ENV=production
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY ./package*.json ./
 RUN npm clean-install
 
 COPY . .
@@ -15,17 +15,17 @@ RUN npm run tailwind:build
 # Stage 2: Setup the Python environment and copy the built frontend assets
 FROM python:3.12-alpine
 
-ENV PYTHONUNBUFFERED 1
-ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /app
 
-RUN apk update && apk add --no-cache tini gcc musl-dev libffi-dev
+RUN apk update && apk add --no-cache tini
 
-RUN pip install --upgrade pip
-RUN pip install pipenv
-COPY ./Pipfile ./Pipfile
-COPY ./Pipfile.lock ./Pipfile.lock
+RUN pip install --upgrade pip --root-user-action ignore
+RUN pip install pipenv --root-user-action ignore
+
+COPY ./Pipfile* ./
 RUN pipenv install --system --deploy
 
 COPY --from=frontend-build /app .

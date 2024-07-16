@@ -6,7 +6,7 @@ WORKDIR /app
 
 RUN apk update && apk add --no-cache tini
 
-COPY package*.json ./
+COPY ./package*.json ./
 RUN npm install
 
 COPY ./compose/local/node/entrypoint.sh /entrypoint.sh

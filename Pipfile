@@ -5,10 +5,10 @@ name = "pypi"
 
 [packages]
 django = "~=4.2"
-psycopg = {version = "~=3.1", extras = ["binary"]}
-requests = "~=2.32"
-pillow = "~=10.2"
+psycopg = {version = "~=3.2", extras = ["binary"]}
+pillow = "~=10.4"
 gunicorn = "~=22.0"
+django-recaptcha = "~=4.0"
 
 [requires]
 python_version = "3"

@@ -12,6 +12,10 @@ echo "Creating .env file from example..."
 cp .env.example .env
 echo
 
+echo "Creating media directory..."
+mkdir -p media
+echo
+
 echo "Building compose environment..."
 docker compose build
 echo

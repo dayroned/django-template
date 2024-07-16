@@ -6,26 +6,12 @@
 
 {% block head_js %}
 
-<!-- begin-recaptcha -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script>
-    function onSubmit(token) {
-        var form = document.getElementById("form-signin");
-        if (form.reportValidity()) {
-            form.submit();
-        }
-        else {
-            grecaptcha.reset();
-        }
-    }
-</script>
-
+<!-- hide-recaptcha-badge -->
 <style>
     .grecaptcha-badge {
-        display: none;
+        visibility: hidden;
     }
 </style>
-<!-- end-recaptcha -->
 
 {% endblock head_js %}
 
@@ -40,6 +26,8 @@
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form id="form-signin" method="post" class="space-y-6">
             {% csrf_token %}
+
+            {{ form.captcha }}
 
             <div>
                 <label for="username" class="block text-sm font-medium leading-6 text-green-950">Username</label>
@@ -65,7 +53,7 @@
 
             <div class="pt-8">
                 <input type="hidden" name="next" value="{{ next }}" />
-                <button type="submit" data-sitekey="{{ recaptcha_site_key }}" data-callback='onSubmit' class="flex w-full justify-center rounded-md bg-green-950 px-3 py-2.5 text-md font-semibold leading-6 text-white shadow-sm hover:bg-green-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-900 g-recaptcha">Log in</button>
+                <button type="submit" class="flex w-full justify-center rounded-md bg-green-950 px-3 py-2.5 text-md font-semibold leading-6 text-white shadow-sm hover:bg-green-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-900">Log in</button>
             </div>
         </form>
     </div>

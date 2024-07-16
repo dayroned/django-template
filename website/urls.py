@@ -3,7 +3,6 @@ from django.urls import path
 
 from .views import *
 
-
 app_name = "website"
 
 # fmt: off
@@ -15,7 +14,7 @@ urlpatterns = [
     path("dashboard", DashboardView.as_view(), name="dashboard"),
 
     # Login
-    path("login", RecaptchaLoginView.as_view(), name="login"),
+    path("login", ReCaptchaLoginView.as_view(), name="login"),
 
     # Logout
     path("logout", LogoutView.as_view(), name="logout"),
